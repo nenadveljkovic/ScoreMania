@@ -1,0 +1,126 @@
+﻿body {
+}
+
+.cont {
+ 
+    
+}
+
+.informacije {
+    display: flex;
+    flex-direction: row;
+}
+
+.labeltext {
+    text-align: center;
+    width: inherit;
+    color: black;
+    white-space: nowrap;
+}
+
+.slika {
+    width: auto;
+    height: 100%;
+    margin-right: 2rem;
+    margin-top: 0.5rem;
+    padding-left: 8rem;
+}
+
+.klub-info-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.klub-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 4rem;
+    padding-top: 5rem;
+}
+
+.klub-info-podaci {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3rem;
+    padding-top: 5rem;
+}
+
+.utakmice {
+    width:80%;
+    margin-left:10%;
+    display:flex;
+    flex-direction:row;
+}
+
+.prosle {
+    width: 90%;
+    margin-left: 5%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 30px;
+    border: 1px solid;
+    border-color: #565656;
+}
+
+.slede {
+    width: 90%;
+    margin-left: 5%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 30px;
+    border: 1px solid;
+    border-color: #565656;
+}
+
+a {
+    color: black;
+}
+
+.timovi:hover {
+    background-color: #bbbbbb;
+    cursor: pointer;
+}
+
+.spisak {
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 50%;
+}
+
+.naziv-div {
+    background-color: #2a2a2a;
+    color: white;
+    border-radius: 30px;
+    padding: 0.5rem;
+}
+
+.omiljena:hover {
+    background-color: #bbbbbb;
+    cursor: pointer;
+}
+
+.labeltext:hover {
+    background-color: #bbbbbb;
+    cursor: pointer;
+}
+
+.utakmica {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 30px;
+}
+
+i {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.utakmica:hover {
+    background-color: #bbbbbb;
+    cursor: pointer;
+}

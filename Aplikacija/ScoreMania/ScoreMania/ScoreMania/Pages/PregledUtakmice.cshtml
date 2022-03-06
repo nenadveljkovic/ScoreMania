@@ -1,0 +1,94 @@
+﻿@page
+@model ScoreMania.Pages.PregledUtakmiceModel
+@{
+    ViewData["Title"] = "Pregled Utakmice";
+    await Model.Korisnik();
+    await Model.Utakmica();
+    await Model.Klub(true);
+    await Model.Klub(false);
+    await Model.Igraci(Model.domacin.naziv, true);
+    await Model.Igraci(Model.gost.naziv, false);
+    ViewData["korisnik"] = Model.LogovaniKorisnik.username;
+}
+
+<head>
+    <link href="~/css/utakmica.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="cont">
+        <div class="utakmica">
+            <div class="naziv-ekipa row">
+                <div class="omiljena">
+                    <button id="@Model.domacin.id" type="button" class="btn btn-default" data-toggle="modal" data-placement="right" title="Dodaj u omiljene klubove!" data-target="#DomacinModal@{@Model.domacin.id;}"><i class="far fa-star" onmouseover="hoveritem(this)" onmouseout="leaveitem(this)" onclick="izabrana(this)"></i></button>
+                </div>
+                <label class="ekipe">@Model.domacin.naziv @Model.utakmica.dgolovi - @Model.utakmica.ggolovi @Model.gost.naziv</label>
+                <div class="omiljena">
+                    <button id="@Model.gost.id" type="button" class="btn btn-default" data-toggle="modal" data-placement="right" title="Dodaj u omiljene klubove!" data-target="#GostModal@{@Model.gost.id;}"><i class="far fa-star" onmouseover="hoveritem(this)" onmouseout="leaveitem(this)" onclick="izabrana(this)"></i></button>
+                </div>
+            </div>
+            <div class="modal fade" id="DomacinModal@{@Model.domacin.id;}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header odjava">
+                            <h5 class="modal-title" id="exampleModalLabel">Potvrda dodavanja</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body odjava">Da li ste sigurni da želite da dodate @Model.domacin.naziv u omiljene klubove?</div>
+                        <div class="modal-footer odjava">
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkaži</button>
+                            <a class="btn btn-primary" asp-route-utakmica="@Model.utakmica.id" asp-route-domacin="@Model.domacin.naziv" asp-route-gost="@Model.gost.naziv" asp-route-username="@Model.LogovaniKorisnik.username" asp-page-handler="DodajDomacin">Potvrdi</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="GostModal@{@Model.gost.id;}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header odjava">
+                            <h5 class="modal-title" id="exampleModalLabel">Potvrda dodavanja</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body odjava">Da li ste sigurni da želite da dodate @Model.gost.naziv u omiljene klubove?</div>
+                        <div class="modal-footer odjava">
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkaži</button>
+                            <a class="btn btn-primary" asp-route-utakmica="@Model.utakmica.id" asp-route-domacin="@Model.domacin.naziv" asp-route-gost="@Model.gost.naziv" asp-route-username="@Model.LogovaniKorisnik.username" asp-page-handler="DodajGost">Potvrdi</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="sidebar-divider d-none d-md-block col-8">
+            <div class="postave row">
+                <div class="igraci-domacin col-6">
+                    @foreach (Models.Igrac i in Model.domaciIgraci)
+                    {
+                        <a class="nav-link" asp-page="/ProfilIgraca" asp-route-username="@Model.LogovaniKorisnik.username" asp-route-ime="@i.ime" asp-route-prezime="@i.prezime" asp-route-naziv="@Model.domacin.naziv"><label class="igrac">@i.prezime @i.ime - <b>(@i.pozicija)</b></label></a>
+                    }
+                </div>
+
+                <div class="igraci-gost col-6">
+                    @foreach (Models.Igrac i in Model.gostujuciIgraci)
+                    {
+                        <a class="nav-link" asp-page="/ProfilIgraca" asp-route-username="@Model.LogovaniKorisnik.username" asp-route-ime="@i.ime" asp-route-prezime="@i.prezime" asp-route-naziv="@Model.gost.naziv"><label class="igrac"><b>(@i.pozicija)</b> - @i.prezime @i.ime</label></a>
+                    }
+                </div>
+            </div>
+            <hr class="sidebar-divider d-none d-md-block col-8">
+            <div class="informacije">
+                <label class="stadion">Stadion: <b>@Model.domacin.stadion</b></label>
+                <label class="sudija">Sudija:<b>@Model.utakmica.sudija</b></label>
+                <label class="datum_vreme">Datum:<b>@Model.utakmica.datum</b> <b>@Model.utakmica.vreme</b></label>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/NovaLiga.js"></script>
+</body>

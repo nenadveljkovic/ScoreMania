@@ -1,0 +1,203 @@
+﻿
+.kol
+{
+    border:none;
+    border-top:none !important;
+    border-bottom:none !important;
+}
+
+#tabela {
+    border: none;
+    overflow: visible;
+}
+
+table
+{
+    width:70% !important;
+}
+
+input
+{
+    border:1px solid black;
+}
+
+.divred
+{
+    width:100% !important;
+}
+
+thead {
+    overflow: auto;
+    margin-bottom:50px;
+}
+
+thead, tbody
+{
+    display:block;
+}
+tbody {
+    overflow: visible;
+}
+
+td
+{
+    background-color:white;
+}
+
+
+/*-----------Za elemente tabele----------*/
+
+.listContainer {
+    position: relative;
+    clear: both;
+    margin: 10px -25px 10px -22px;
+    padding: 20px 20px 6px 23px;
+    height: 230px;
+    background-position: -20px -640px;
+    overflow: visible;
+}
+
+.listBlock-1 {
+    float: left;
+    width: 142px;
+    height: 180px;
+}
+
+.listBlock-2 {
+    float: left;
+    width: 279px;
+    height: 150px;
+    margin: 0 10px 0 13px;
+    cursor: pointer;
+}
+
+.listBlock-3 {
+    background: transparent;
+    padding: 0px 5px 5px 0px;
+    float: right;
+    width: 170px;
+    height: 96px;
+}
+
+.listContainer .pictureContainer {
+    position: relative;
+    border: solid 1px #ECEEEC;
+    width: 140px;
+    height: 105px;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    overflow: hidden;
+}
+
+.detobr
+{
+    padding-top:80px;
+}
+
+.listContainer .location .cityName {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 20px;
+    padding: 7px 0 8px 20px;
+    letter-spacing: 0;
+}
+
+.listContainer .location .hoodName {
+    color: #ffffff;
+    line-height: 16px;
+    font-size: 16px;
+    margin: 0px 0px 3px 20px;
+}
+
+.listContainer .icon-bookmark {
+    display: none;
+    float: right;
+    margin: 3px 3px 0 0;
+}
+
+.listContainer .date_update {
+    float: right;
+    text-align: right;
+    margin: 4px 0 0 0;
+    font-size: 12px;
+    font-style: italic;
+    width: 50px;
+}
+
+.listContainer .type_name {
+    text-align: right;
+    margin: 55px 0 0 0;
+    font-size: 12px;
+    height: 16px;
+    line-height: 16px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.location {
+    background-position: -77px -383px;
+    width: auto;
+    max-width: 290px;
+    height: 58px;
+    margin-left: -5px;
+    background-color: #4e73df;
+}
+
+.listContainer .listSurface {
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 26px;
+    height: 30px;
+    color: #93938a;
+    margin: 7px 0 0 10px;
+}
+
+.listContainer .listPrice {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 26px;
+    height: 30px;
+    margin: 9px 0 0px 14px;
+    color: #93938a;
+}
+
+.separator {
+    clear: both;
+    height: 6px;
+    background: #93938a;
+    margin: 4px 0 4px 0px;
+}
+
+.listContainer .listTitle {
+    font-size: 14px;
+    color: #cccccc;
+    line-height: 18px;
+    padding: 5px 0 5px 15px;
+    margin: 0px 0 0px 0;
+    height: 58px;
+    overflow: hidden;
+}
+
+.parameters {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.listContainer .parameters div {
+    height: 16px;
+}
+
+.section-label {
+    clear: both;
+    font-size: 0.85em;
+    color: #94948b;
+    border-bottom: 1px solid #cecfca;
+    padding: 0 0 3px 3px;
+    margin: 0 0 5px 0;
+}
+
+label {
+    cursor: default;
+}

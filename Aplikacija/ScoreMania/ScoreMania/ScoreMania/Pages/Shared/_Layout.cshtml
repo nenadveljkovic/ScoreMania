@@ -1,0 +1,182 @@
+﻿@using Neo4j.Driver;
+@using ScoreMania.Models;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ScoreMania</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <!-- Custom fonts for this template-->
+    <link href="~/BootstrapTema/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~/BootstrapTema/css/sb-admin-2.min.css" rel="stylesheet" />
+
+    <style>
+        .content .content-wrapper {
+            overflow: auto;
+        }
+
+        #lige-pozadina {
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+        }
+
+        img {
+            padding-left: 3rem;
+            padding-right: 3rem;
+            height: inherit;
+            width: auto;
+        }
+
+        #korisnik {
+            text-align: center;
+            white-space: nowrap;
+            justify-content: center;
+        }
+    </style>
+
+    @{
+        if (object.Equals(ViewData["korisnik"], null))
+        {
+            <style>
+                a {
+                    pointer-events:none;
+                    cursor:default;
+                    text-decoration:none;
+                    color:gray;
+                }
+            </style>
+        }
+    }
+</head>
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"  asp-page="/PocetnaZaKorisnika" asp-route-username="@ViewData["korisnik"]" >
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-futbol"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">ScoreMania</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Kontrolna tabla</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" asp-page="/OmiljeneUtakmice" asp-route-username="@ViewData["korisnik"]">
+                    <i class="far fa-star"></i>
+                    <span>Omiljene utakmice</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" asp-page="/OmiljeniKlubovi" asp-route-username="@ViewData["korisnik"]">
+                    <i class="fas fa-star"></i>
+                    <span>Omiljeni klubovi</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content" class="bg-white" style="height:100%">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <div id="lige-pozadina">
+                        <img src="~/Pictures/engleska.png" />
+                        <img src="~/Pictures/spanija.png" />
+                        <img src="~/Pictures/italija.png" />
+                        <img src="~/Pictures/francuska.png" />
+                        <img src="~/Pictures/nemacka.png" />
+                    </div>
+                    <div id="korisnik">
+                        <label>@ViewData["korisnik"]</label>
+                    </div>
+                </nav>
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="bg-white">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                </div>
+
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; ScoreMania 2020</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+            </div>
+            <!-- End of Main Content -->
+
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Footer -->
+
+    
+
+    <!--  Auto Reload -->
+    <!-- Visual Studio Browser Link -->
+    <script type="application/json" id="__browserLink_initializationData">
+        {"requestId":"a717d5a07c1741949a7cefd6fa2bad08","requestMappingFromServer":false}
+    </script>
+    <script type="text/javascript" src="http://localhost:54139/b6e36e429d034f578ebccd6a79bf19bf/browserLink" async="async"></script>
+    <!-- End Browser Link -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/BootstrapTema/vendor/jquery/jquery.min.js"></script>
+    <script src="~/BootstrapTema/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/BootstrapTema/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/BootstrapTema/js/sb-admin-2.min.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

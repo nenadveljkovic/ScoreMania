@@ -1,0 +1,18 @@
+﻿#PosaljiP {
+    display: none;
+}
+
+.posalji {
+    display: none;
+}
+
+.posalji2 {
+    display: none;
+}
+.error {
+    color: #cc0033;
+    display: inline-block;
+    font-size: large;
+    line-height: 15px;
+    margin: 5px 0 0;
+}

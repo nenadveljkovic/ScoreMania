@@ -1,0 +1,54 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Log In";
+
+}
+
+<head>
+    <link href="~/css/Login.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div id="lige">
+        <div class="container liga">
+
+            <div class="container2">
+                <div class="naziv-div"><label class="naziv-liga">Uloguj se</label></div>
+            </div>
+            <div class="utakmice row">
+                <div class="utakmica">
+                    <form class=" validate-form" method="post">
+                        <div class=" validate-input" data-validate="Unesi korisničko ime">
+                            <input type="text" name="korisnickoime" asp-for="@Model.KorisnickoIme" placeholder="Korisničko ime">
+
+                        </div>
+
+                        <div class="validate-input" data-validate="Unesi lozinku">
+                            <input type="password" name="sifra" asp-for="@Model.Sifra" placeholder="Lozinka">
+
+                        </div>
+                        <br />
+                        @if (Model.Greska)
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Pogrešno korisničko ime ili lozinka</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        }
+                        <div>
+                            <button class="btn btn-primary">Uloguj se</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/NovaLiga.js"></script>
+</body>
+

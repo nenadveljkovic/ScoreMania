@@ -1,0 +1,84 @@
+﻿@page
+@model ScoreMania.Pages.OmiljeneUtakmiceModel
+@{
+    ViewData["Title"] = "Omiljene utakmice";
+    await Model.Korisnik();
+    await Model.Utakmice();
+    ViewData["korisnik"] = Model.LogovaniKorisnik.username;
+}
+
+    <head>
+        <link href="~/css/omiljene.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    </head>
+
+<body>
+    <div class="cont">
+        @{
+            int counter = 0,brojac = 0;
+            <div class="container liga">
+
+                <div class="container2">
+                    <div class="naziv-div"><label class="naziv-liga">@Model.LogovaniKorisnik.username - Omiljene utakmice</label></div>
+                </div>
+                <div class="utakmice">
+                    @foreach (Models.Utakmica u in Model.utakmice)
+                    {
+                        brojac += 4;
+                        <div class="utakmica row">
+                            <div class="datum-vreme-div col-1"><label class="datum-vreme">@u.datum @u.vreme</label></div>
+                            <a class="nav-link" asp-page="/PregledUtakmice" asp-route-utakmica="@u.id" asp-route-home="@Model.domacini[counter].naziv" asp-route-away="@Model.gosti[counter].naziv" asp-route-logovani="@Model.LogovaniKorisnik.username">
+                                <div class="timovi col-6"><label class="home">@Model.domacini[counter].naziv</label><label class="score"> @u.dgolovi-@u.ggolovi</label> <label class="away">@Model.gosti[counter].naziv</label></div>
+                            </a>
+                            <div class="omiljena col-1"><button id="@u.id" type="button" class="btn btn-default" data-toggle="modal" data-placement="right" title="Obrisi iz omiljenih utakmica!" data-target="#deleteModal@{@u.id;}"><i class="far fa-star" onmouseover="hoveritem(this)" onmouseout="leaveitem(this)" onclick="izabrana(this)"></i></button></div>
+                            <div>
+                                
+                                <fieldset class="rating">
+                                    <input type="radio" checked="@(Model.ocene[brojac]?true:false)" id="star5@{@u.id;}" name="rating@{@u.id;}" value="5" /><label class="full" for="star5@{@u.id;}" title="Rocks!"><a style="text-decoration:none" asp-page-handler="Oceni" asp-route-utakmicaid="@u.id" asp-route-username="@Model.LogovaniKorisnik.username" asp-route-ocena="5">5</a></label>
+                                    @{ brojac--;}
+                                    <input type="radio" checked="@(Model.ocene[brojac]?true:false)" id="star4@{@u.id;}" name="rating@{@u.id;}" value="4" /><label class="full" for="star4@{@u.id;}" title="Pretty good"><a style="text-decoration:none" asp-page-handler="Oceni" asp-route-utakmicaid="@u.id" asp-route-username="@Model.LogovaniKorisnik.username" asp-route-ocena="4">4</a></label>
+                                    @{ brojac--;}
+                                    <input type="radio" checked="@(Model.ocene[brojac]?true:false)" id="star3@{@u.id;}" name="rating@{@u.id;}" value="3" /><label class="full" for="star3@{@u.id;}" title="Meh"><a style="text-decoration:none" asp-page-handler="Oceni" asp-route-utakmicaid="@u.id" asp-route-username="@Model.LogovaniKorisnik.username" asp-route-ocena="3">3</a></label>
+                                    @{ brojac--;}
+                                    <input type="radio" checked="@(Model.ocene[brojac]?true:false)" id="star2@{@u.id;}" name="rating@{@u.id;}" value="2" /><label class="full" for="star2@{@u.id;}" title="Kinda bad"><a style="text-decoration:none" asp-page-handler="Oceni" asp-route-utakmicaid="@u.id" asp-route-username="@Model.LogovaniKorisnik.username" asp-route-ocena="2">2</a></label>
+                                    @{ brojac--;}
+                                    <input type="radio" checked="@(Model.ocene[brojac]?true:false)" id="star1@{@u.id;}" name="rating@{@u.id;}" value="1" /><label class="full" for="star1@{@u.id;}" title="Sucks big time"><a style="text-decoration:none" asp-page-handler="Oceni" asp-route-utakmicaid="@u.id" asp-route-username="@Model.LogovaniKorisnik.username" asp-route-ocena="1">1</a></label>
+
+                                </fieldset>
+
+                            </div>
+                        </div>
+                       
+                        <div class="modal fade" id="deleteModal@{@u.id;}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header odjava">
+                                        <h5 class="modal-title" id="exampleModalLabel">Potvrda brisanja</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body odjava">Da li ste sigurni da želite da obrisete utakmicu iz omiljenih?</div>
+                                    <div class="modal-footer odjava">
+
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkaži</button>
+                                        <a class="btn btn-primary" asp-route-iD="@u.id" asp-route-username="@Model.LogovaniKorisnik.username" asp-page-handler="Obrisi">Potvrdi</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="sidebar-divider d-none d-md-block col-11">
+                        counter++;
+                        brojac += 5;
+                        
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    <script src="~/js/omiljene.js"></script>
+    
+</body>

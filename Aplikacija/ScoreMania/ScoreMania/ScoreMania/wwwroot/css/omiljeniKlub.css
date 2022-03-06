@@ -1,0 +1,183 @@
+﻿body {
+
+}
+
+.labeltext {
+    text-align: center;
+    width: inherit;
+    color: black;
+    white-space: nowrap;
+}
+
+
+.liga {
+    border-radius: 30px;
+    border: 1px solid;
+    border-color: #565656;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 90%;
+}
+
+#lige {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.naziv-div {
+    background-color: #2a2a2a;
+    color: white;
+    border-radius: 30px;
+    padding-top: 0.5rem;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.container2 {
+    padding-bottom: 1rem;
+    text-align: center;
+    justify-content: center;
+}
+
+.datum-vreme {
+    color: black;
+    white-space: nowrap;
+    text-align: left;
+}
+
+a {
+    color: black;
+}
+
+.klub {
+    color:white;
+}
+
+.datum-vreme:hover {
+    background-color: #bbbbbb;
+    cursor: pointer;
+}
+
+.datum-vreme-div {
+    text-align: center;
+    margin: auto 0;
+}
+
+.btn {
+    outline: none;
+}
+
+.datum-vreme-div:hover {
+    background-color: #bbbbbb;
+    cursor: pointer;
+}
+
+.timovi:hover {
+    background-color: #bbbbbb;
+    cursor: pointer;
+}
+
+.omiljena:hover {
+    background-color: #bbbbbb;
+    cursor: pointer;
+}
+
+.labeltext:hover {
+    background-color: #bbbbbb;
+    cursor: pointer;
+}
+
+.utakmica {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 30px;
+}
+
+.utakmice {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+i {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    text-align: right;
+    font-size: x-large;
+}
+
+#dodaj-div {
+    padding-left: 45%;
+    padding-right: 45%;
+    width: 100%;
+    height: 3rem;
+}
+
+.dodaj {
+    border: 1px solid;
+    border-color: #565656;
+    border-radius: 20px;
+    font-size: larger;
+    background-color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+    .dodaj:hover {
+        background-color: #bbbbbb;
+        cursor: pointer;
+    }
+
+.utakmica:hover {
+    background-color: #bbbbbb;
+    cursor: pointer;
+}
+
+.omiljena {
+    float:right;
+}
+
+.naziv-liga {
+    cursor:pointer;
+    font-size:xx-large;
+}
+
+.home {
+    width: 30%;
+    text-align: left;
+    color: black;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.score {
+    width: 10%;
+    text-align: center;
+    color: black;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.away {
+    width: 30%;
+    text-align: right;
+    color: black;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.timovi {
+    width: 100%;
+    min-width: 600px;
+    text-align: center;
+}
+
+.omiljena {
+    text-align: right;
+}

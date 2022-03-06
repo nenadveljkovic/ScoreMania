@@ -1,0 +1,77 @@
+﻿@page
+@model ScoreMania.Pages.PocetnaZaKorisnikaModel
+@{
+    ViewData["Title"] = "Home page";
+    //System.Threading.Thread.Sleep(1000);
+    await Model.Korisnik();
+    await Model.Lige();
+    ViewData["korisnik"] = Model.LogovaniKorisnik.username;
+
+}
+
+<head>
+    <link href="~/css/main.css" rel="stylesheet" />
+
+
+</head>
+
+<body>
+    <div id="lige">
+        @{
+            int id = 0;
+            int counter = 0;
+            @foreach (Models.Liga l in Model.lige)
+            {
+                <div class="container liga">
+                    <div class="container2">
+                        <div class="naziv-div"><label class="naziv-liga">@l.drzava - @l.naziv</label></div>
+                    </div>
+                    <div class="utakmice">
+                        @foreach (Models.Utakmica u in Model.utakmice.ElementAt(id))
+                        {
+                            <div class="utakmica row">
+                                <div class="datum-vreme-div col-3"><label class="datum-vreme">@u.datum @u.vreme</label></div>
+                                <a class="nav-link" asp-page="/PregledUtakmice" asp-route-utakmica="@u.id" asp-route-home="@Model.domacini[counter].naziv" asp-route-away="@Model.gosti[counter].naziv" asp-route-logovani="@Model.LogovaniKorisnik.username">
+                                    <div class="timovi col-8"><label class="home">@Model.domacini[counter].naziv</label><label class="score"> @u.dgolovi-@u.ggolovi</label> <label class="away">@Model.gosti[counter].naziv</label></div>
+                                </a>
+                                <div class="omiljena col-1"><button id="@u.id" type="button" class="btn btn-default" data-toggle="modal" data-placement="right" title="Dodaj u omiljene utakmice!" data-target="#updateModal@{@u.id;}"><i class="far fa-star" onmouseover="hoveritem(this)" onmouseout="leaveitem(this)" onclick="izabrana(this)"></i></button></div>
+                            </div>
+
+                            <div class="modal fade" id="updateModal@{@u.id;}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header odjava">
+                                            <h5 class="modal-title" id="exampleModalLabel">Potvrda dodavanja</h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body odjava">Da li ste sigurni da želite da dodate ovu utakmicu u omiljene?</div>
+                                        <div class="modal-footer odjava">
+
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkaži</button>
+                                            <a class="btn btn-primary" onclick="blokiraj(@u.id" asp-route-iD="@u.id" asp-route-username="@Model.LogovaniKorisnik.username" asp-page-handler="Dodaj">Potvrdi</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="sidebar-divider d-none d-md-block col-11">
+                            counter++;
+                        }
+                    </div>
+                </div>
+                id++;
+            }
+        }
+    </div>
+
+    <script src="~/js/NovaLiga.js"></script>
+    <script>
+        function blokiraj(id) {
+            const dugme = document.getElementById(id);
+            dugme.disabled = true;
+        }
+    </script>
+</body>

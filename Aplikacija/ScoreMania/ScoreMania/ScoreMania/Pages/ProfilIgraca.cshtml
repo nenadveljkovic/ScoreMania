@@ -1,0 +1,63 @@
+﻿@page
+@model ScoreMania.Pages.ProfilIgracaModel
+@{
+    ViewData["Title"] = "Profil Igraca";
+    await Model.Korisnik();
+    await Model.Klub();
+    await Model.Igrac();
+    await Model.Utakmice();
+    ViewData["korisnik"] = Model.LogovaniKorisnik.username;
+}
+
+<head>
+    <link href="~/css/igrac.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="cont">
+        <div class="informacije">
+            <div class="slika">
+                <img src="~/Pictures/profile.jpg" />
+            </div>
+            <div class="igrac-info-div">
+                <div class="igrac-info">
+                    <label class="tekst"><b>Ime:</b></label>
+                    <label class="tekst"><b>Prezime:</b></label>
+                    <label class="tekst"><b>Godiste:</b></label>
+                    <label class="tekst"><b>Pozicija:</b></label>
+                    <label class="tekst"><b>Klub:</b></label>
+                </div>
+                <div class="igrac-info-podaci">
+                    <label class="tekst-podaci">@Model.igrac.ime</label>
+                    <label class="tekst-podaci">@Model.igrac.prezime</label>
+                    <label class="tekst-podaci">@Model.igrac.godiste</label>
+                    <label class="tekst-podaci">@Model.igrac.pozicija</label>
+                    <label class="tekst-podaci">@Model.klub.naziv</label>
+                </div>
+            </div>
+        </div>
+        <hr class="sidebar-divider d-none d-md-block col-8">
+        <div class="container liga">
+            <div class="container2">
+                <div class="naziv-div"><label class="naziv-liga">@Model.klub.naziv - Utakmice</label></div>
+            </div>
+            <div class="utakmice">
+                @{ int counter = 0;
+                @foreach (Models.Utakmica u in Model.utakmice)
+                {
+                    <div class="utakmica row">
+                        <div class="datum-vreme-div col-3"><label class="datum-vreme">@u.datum @u.vreme</label></div>
+                        <a class="nav-link" asp-page="/PregledUtakmice" asp-route-utakmica="@u.id" asp-route-home="@Model.domacini[counter].naziv" asp-route-away="@Model.gosti[counter].naziv" asp-route-logovani="@Model.LogovaniKorisnik.username">
+                            <div class="timovi col-8"><label class="home">@Model.domacini[counter].naziv</label><label class="score"> @u.dgolovi-@u.ggolovi</label> <label class="away">@Model.gosti[counter].naziv</label></div>
+                        </a>
+                        <div class="omiljena col-1"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Dodaj u omiljene utakmice!"><i class="far fa-star" onmouseover="hoveritem(this)" onmouseout="leaveitem(this)" onclick="izabrana(this)"></i></button></div>
+                    </div>
+
+                    <hr class="sidebar-divider d-none d-md-block col-11">
+                    counter++;
+                }
+                }
+            </div>
+        </div>
+    </div>
+</body>
